@@ -1,0 +1,30 @@
+name: CI
+on: [push]
+jobs:
+  ci:
+    name: ${{ matrix.os }}/Node ${{ matrix.node }} lint, build, and test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ["14.x", "16.x"]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build
+        run: yarn build
+
+      - name: Test
+        run: yarn test:ci
