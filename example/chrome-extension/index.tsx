@@ -1,6 +1,6 @@
 import * as React from "react"
 import { createRoot } from "react-dom/client"
-import { HelloWorld } from "../."
+import { HelloWorld } from "../../dist"
 
 const App = () => {
   return (

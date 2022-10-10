@@ -1,16 +1,16 @@
 {
-  "name": "tsdx-react-storybook-starter",
+  "name": "reactory",
   "version": "0.1.0",
   "author": "Andrew Zigler",
-  "description": "TSDX with an opinionated setup for React and Storybook",
+  "description": "React component prototyping and publishing",
   "private": false,
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/azigler/tsdx-react-storybook-starter.git"
+    "url": "https://github.com/azigler/reactory.git"
   },
   "bugs": {
-    "url": "https://github.com/azigler/tsdx-react-storybook-starter/issues",
+    "url": "https://github.com/azigler/reactory/issues",
     "email": "andrewzigler@gmail.com"
   },
   "keywords": [
@@ -25,7 +25,7 @@
     "url": "https://ko-fi.com/andrewzigler"
   },
   "main": "dist/index.js",
-  "module": "dist/tsdx-react-storybook-starter.esm.js",
+  "module": "dist/reactory.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -38,7 +38,7 @@
     "badges": "istanbul-badges-readme --coverageDir=test/__coverage__ --logo=jest",
     "build": "tsdx build --format cjs,esm,umd,system",
     "clean": "yarn husky || : && rm -rf dist && rm -rf deploy && rm -rf node_modules && rm -rf storybook-static && yarn install && cd example && yarn clean",
-    "deploy": "rm -rf deploy && mkdir deploy && yarn test && yarn build && yarn storybook:build && cp -r storybook-static deploy/storybook && cp -r test/__coverage__ deploy/coverage && cd example && yarn install && yarn run parcel build --public-url=https://azigler.github.io/tsdx-react-storybook-starter/example index.html && cp -r dist/. ../deploy/example",
+    "deploy": "rm -rf deploy && mkdir deploy && yarn test && yarn build && yarn storybook:build && cp -r storybook-static deploy/storybook && cp -r test/__coverage__ deploy/coverage && cd example && yarn install && yarn run parcel build --public-url=https://azigler.github.io/reactory/example index.html && cp -r dist/. ../deploy/example",
     "dev": "tsdx watch",
     "husky": "rm -rf .husky && husky install && npx husky add .husky/pre-commit 'yarn husky:prepare'",
     "husky:prepare": "yarn lint && yarn build && yarn test && yarn size && yarn storybook:build",
@@ -85,27 +85,27 @@
   },
   "size-limit": [
     {
-      "path": "dist/tsdx-react-storybook-starter.cjs.production.min.js",
+      "path": "dist/reactory.cjs.production.min.js",
       "limit": "25 KB"
     },
     {
-      "path": "dist/tsdx-react-storybook-starter.esm.js",
+      "path": "dist/reactory.esm.js",
       "limit": "25 KB"
     },
     {
-      "path": "dist/tsdx-react-storybook-starter.system.production.min.js",
+      "path": "dist/reactory.system.production.min.js",
       "limit": "25 KB"
     },
     {
-      "path": "dist/tsdx-react-storybook-starter.umd.production.min.js",
+      "path": "dist/reactory.umd.production.min.js",
       "limit": "25 KB"
     }
   ],
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@rollup/plugin-image": "^2.1.1",
-    "@rollup/plugin-replace": "^4.0.0",
-    "@rollup/plugin-url": "^7.0.0",
+    "@rollup/plugin-image": "^3.0.0",
+    "@rollup/plugin-replace": "^5.0.0",
+    "@rollup/plugin-url": "^8.0.0",
     "@size-limit/preset-small-lib": "^8.1.0",
     "@storybook/addon-a11y": "^6.5.12",
     "@storybook/addon-design-assets": "^6.2.9",
@@ -117,9 +117,10 @@
     "@storybook/builder-webpack5": "^6.5.12",
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/react": "^6.5.12",
-    "@svgr/rollup": "^6.3.1",
-    "@svgr/webpack": "^6.3.1",
+    "@svgr/rollup": "^6.4.0",
+    "@svgr/webpack": "^6.4.0",
     "@testing-library/react": "^13.4.0",
+    "@types/chrome": "^0.0.197",
     "@types/mdx": "^2.0.2",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
@@ -129,18 +130,18 @@
     "husky": "^8.0.1",
     "istanbul-badges-readme": "^1.8.2",
     "jest-transform-stub": "^2.0.0",
-    "less-loader": "^11.0.0",
-    "postcss": "^8.4.16",
+    "less-loader": "^11.1.0",
+    "postcss": "^8.4.17",
     "postcss-loader": "^7.0.1",
-    "postcss-nested": "^5.0.6",
+    "postcss-nested": "^6.0.0",
     "postcss-preset-env": "^7.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "sass-loader": "^13.0.2",
+    "sass-loader": "^13.1.0",
     "size-limit": "^8.1.0",
-    "stylus-loader": "^7.0.0",
+    "stylus-loader": "^7.1.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.8.4",

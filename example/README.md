@@ -1,1 +1,1 @@
-Please refer to the [Example](https://github.com/azigler/tsdx-react-storybook-starter/tree/main/README.md#example) section of the [tsdx-react-storybook-starter README](https://github.com/azigler/tsdx-react-storybook-starter/tree/main/README.md) for information about this example.
+Please refer to the [Example](https://github.com/azigler/reactory/tree/main/README.md#example) section of the [reactory README](https://github.com/azigler/reactory/tree/main/README.md) for information about this example.

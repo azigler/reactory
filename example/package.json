@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && parcel build index.html",
+    "build": "yarn build:chrome-extension",
+    "build:chrome-extension": "rm -rf dist && parcel build chrome-extension/index.html && cp chrome-extension/manifest.json dist/manifest.json",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .cache && yarn install",
     "dev": "parcel index.html --open",
     "start": "yarn dev"
