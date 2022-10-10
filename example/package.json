@@ -6,6 +6,8 @@
     "build": "yarn build:chrome-extension",
     "build:chrome-extension": "rm -rf dist && parcel build chrome-extension/index.html && cp chrome-extension/manifest.json dist/manifest.json",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .cache && yarn install",
+    "deploy": "yarn deploy:chrome-extension",
+    "deploy:chrome-extension": "rm -rf dist && parcel build --public-url=https://azigler.github.io/reactory/example chrome-extension/index.html && cp chrome-extension/manifest.json dist/manifest.json && cp -r dist ../deploy/example",
     "dev": "parcel index.html --open",
     "start": "yarn dev"
   },
