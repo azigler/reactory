@@ -1,0 +1,1 @@
+{"version":3,"sources":["scripts/context-script.ts"],"names":[],"mappings":";AACA,aADA,IAAI,EAAkB,8BACtB,QAAQ,IAAI","file":"context-script.js","sourceRoot":"../chrome-extension","sourcesContent":["let message: string = \"Hello from content_scripts!\"\nconsole.log(message)\n"]}

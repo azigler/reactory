@@ -1,13 +1,37 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
-  "version": "1.0",
   "manifest_version": 3,
+  "name": "Experimental React-based Chrome extension",
+  "short_name": "short",
+  "version": "1.0",
+  "version_name": "testo",
+  "description": "Base Level Extension",
+  "content_scripts": [
+    {
+      "js": ["scripts/reading-time.js"],
+      "matches": [
+        "https://developer.chrome.com/docs/extensions/*",
+        "https://developer.chrome.com/docs/webstore/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "host_permissions": ["https://*/*"],
+  "permissions": ["tabs", "activeTab", "notifications", "scripting"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+U",
+        "mac": "Command+U"
+      }
+    }
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
   "action": {
     "default_popup": "index.html",
     "default_title": "Open the popup"
-  },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }
