@@ -4,17 +4,23 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn build:chrome-extension",
-    "build:chrome-extension": "rm -rf dist && parcel build chrome-extension/index.html && cp chrome-extension/manifest.json dist/manifest.json",
+    "build:chrome-extension": "rm -rf dist && parcel build chrome-extension/index.html chrome-extension/scripts/**/** chrome-extension/styles/**/** && cp chrome-extension/manifest.json dist/manifest.json",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .cache && yarn install",
     "deploy": "yarn deploy:chrome-extension",
-    "deploy:chrome-extension": "rm -rf dist && parcel build --public-url=https://azigler.github.io/reactory/example chrome-extension/index.html && cp chrome-extension/manifest.json dist/manifest.json && cp -r dist ../deploy/example",
-    "dev": "parcel index.html --open",
-    "start": "yarn dev"
+    "deploy:chrome-extension": "rm -rf dist && parcel build --public-url=https://azigler.github.io/reactory/example chrome-extension/index.html chrome-extension/scripts/**/** chrome-extension/styles/**/** && cp chrome-extension/manifest.json dist/manifest.json && cp -r dist ../deploy/example",
+    "dev": "yarn dev:chrome-extension",
+    "dev:chrome-extension": "parcel chrome-extension/index.html",
+    "start": "yarn dev",
+    "watch": "npm-watch"
   },
   "alias": {
     "$react-dom": "../node_modules/react-dom/profiling"
   },
+  "watch": {
+    "build:chrome-extension": "chrome-extension/**/**.*"
+  },
   "devDependencies": {
+    "npm-watch": "^0.11.0",
     "parcel": "^2.7.0",
     "parcel-bundler": "^1.12.5"
   }
