@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build:chrome-extension",
+    "build": "yarn build:expo-react-native",
     "build:chrome-extension": "rm -rf dist && parcel build chrome-extension/index.html chrome-extension/scripts/**/** chrome-extension/styles/**/** && cp chrome-extension/manifest.json dist/manifest.json",
+    "build:expo-react-native": "cd expo-react-native && rm -rf web-build && npx expo export:web",
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .cache && yarn install",
-    "deploy": "yarn deploy:chrome-extension",
+    "deploy": "yarn deploy:expo-react-native",
     "deploy:chrome-extension": "rm -rf dist && parcel build --public-url=https://azigler.github.io/reactory/example chrome-extension/index.html chrome-extension/scripts/**/** chrome-extension/styles/**/** && cp chrome-extension/manifest.json dist/manifest.json && cp -r dist ../deploy/example",
-    "dev": "yarn dev:chrome-extension",
+    "deploy:expo-react-native": "yarn build:expo-react-native && cp -r expo-react-native/web-build ../deploy/example",
+    "dev": "yarn dev:expo-react-native",
+    "dev:boardgame.io": "parcel boardgame.io/index.html",
     "dev:chrome-extension": "parcel chrome-extension/index.html",
+    "dev:expo-react-native": "cd expo-react-native && npm run start",
     "start": "yarn dev",
     "watch": "npm-watch"
   },
@@ -21,7 +25,7 @@
   },
   "devDependencies": {
     "npm-watch": "^0.11.0",
-    "parcel": "^2.7.0",
+    "parcel": "^2.8.0",
     "parcel-bundler": "^1.12.5"
   }
 }

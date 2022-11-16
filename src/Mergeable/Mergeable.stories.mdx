@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs"
+import { Mergeable } from "./Mergeable"
+
+<Meta title="Components/Mergeable" component={Mergeable} />
+
+export const MergeableTemplate = (args) => <Mergeable {...args} />
+
+# Mergeable
+
+The `Mergeable` component.
+
+<Canvas withSource="open">
+  <Story name="Mergeable">{MergeableTemplate.bind({})}</Story>
+</Canvas>

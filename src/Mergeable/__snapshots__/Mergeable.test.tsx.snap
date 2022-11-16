@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Draggable component renders 1`] = `
+<main>
+  <div
+    class="react-draggable"
+    style="transform: translate(0px,0px);"
+  >
+    BOOP
+  </div>
+</main>
+`;

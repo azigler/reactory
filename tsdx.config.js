@@ -9,18 +9,18 @@ module.exports = {
       images({ exclude: "*.svg" }),
       svgr(),
       postcss(),
-      ...config.plugins
+      ...config.plugins,
     ]
 
-    config.plugins = config.plugins.map(plugin =>
+    config.plugins = config.plugins.map((plugin) =>
       plugin.name === "replace"
         ? replace({
             "process.env.NODE_ENV": JSON.stringify(options.env),
-            preventAssignment: true
+            preventAssignment: true,
           })
         : plugin
     )
 
     return config
-  }
+  },
 }

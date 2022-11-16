@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs"
+import { MergeBoard } from "./MergeBoard"
+
+<Meta title="Components/MergeBoard" component={MergeBoard} />
+
+export const MergeBoardTemplate = (args) => <MergeBoard {...args} />
+
+# MergeBoard
+
+The `MergeBoard` component.
+
+<Canvas withSource="open">
+  <Story name="MergeBoard">{MergeBoardTemplate.bind({})}</Story>
+</Canvas>

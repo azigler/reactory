@@ -42,17 +42,18 @@
     "dev": "tsdx watch",
     "husky": "rm -rf .husky && husky install && npx husky add .husky/pre-commit 'yarn husky:prepare'",
     "husky:prepare": "yarn lint && yarn build && yarn test && yarn size && yarn storybook:build",
-    "lint": "tsdx lint src --fix",
+    "lint": "yarn prettier -w ./src .storybook example && tsdx lint src .storybook example --fix",
     "size": "size-limit",
     "start": "yarn dev",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "rm -rf storybook-static && build-storybook",
-    "test": "tsdx test --passWithNoTests --json --outputFile=test/__coverage__/jest-test-results.json --coverageDirectory=test/__coverage__ --coverage && yarn badges",
+    "test": "jest --passWithNoTests --json --outputFile=test/__coverage__/jest-test-results.json --coverageDirectory=test/__coverage__ --coverage && yarn badges",
     "test:ci": "yarn test --runInBand --ci",
     "test:watch": "yarn test --watch --maxWorkers=25%"
   },
   "prettier": {
-    "semi": false
+    "semi": false,
+    "trailingComma": "es5"
   },
   "eslintConfig": {
     "plugins": [
@@ -61,10 +62,15 @@
     "extends": [
       "plugin:jsx-a11y/recommended",
       "react-app",
-      "prettier/@typescript-eslint",
       "plugin:react/recommended",
-      "plugin:prettier/recommended",
       "eslint:recommended"
+    ],
+    "rules": {
+      "prettier/prettier": 0
+    },
+    "ignorePatterns": [
+      "**/node_modules/**",
+      "**/web-build/**"
     ]
   },
   "eslintIgnore": [
@@ -81,23 +87,13 @@
       "json-summary",
       "html",
       "text-summary"
-    ]
+    ],
+    "preset": "jest-expo",
+    "testEnvironment": "jsdom"
   },
   "size-limit": [
     {
-      "path": "dist/reactory.cjs.production.min.js",
-      "limit": "25 KB"
-    },
-    {
-      "path": "dist/reactory.esm.js",
-      "limit": "25 KB"
-    },
-    {
       "path": "dist/reactory.system.production.min.js",
-      "limit": "25 KB"
-    },
-    {
-      "path": "dist/reactory.umd.production.min.js",
       "limit": "25 KB"
     }
   ],
@@ -120,33 +116,38 @@
     "@svgr/rollup": "^6.5.1",
     "@svgr/webpack": "^6.5.1",
     "@testing-library/react": "^13.4.0",
-    "@types/chrome": "^0.0.200",
+    "@types/chrome": "^0.0.202",
     "@types/mdx": "^2.0.3",
     "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
-    "babel-jest": "^29.2.2",
+    "@types/react-dom": "^18.0.9",
+    "@types/react-native": "^0.70.6",
+    "babel-jest": "^29.3.1",
     "babel-loader": "^9.1.0",
     "babel-plugin-polyfill-corejs2": "^0.3.3",
+    "boardgame.io": "^0.50.2",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "file-loader": "^6.2.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "istanbul-badges-readme": "^1.8.2",
+    "jest-expo": "^47.0.1",
     "jest-transform-stub": "^2.0.0",
     "less-loader": "^11.1.0",
-    "postcss": "^8.4.18",
+    "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "postcss-nested": "^6.0.0",
-    "postcss-preset-env": "^7.8.2",
+    "postcss-preset-env": "^7.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
     "react-is": "^18.2.0",
+    "react-native": "^0.70.6",
     "rollup-plugin-postcss": "^4.0.2",
-    "sass-loader": "^13.1.0",
+    "sass-loader": "^13.2.0",
     "size-limit": "^8.1.0",
     "stylus-loader": "^7.1.0",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.1",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.3",
     "typescript-plugin-css-modules": "^3.4.0"
   },
   "resolutions": {

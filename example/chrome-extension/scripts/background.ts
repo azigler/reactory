@@ -5,13 +5,13 @@
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.action.setBadgeText({
-    text: "OFF"
+    text: "OFF",
   })
 })
 
-chrome.runtime.onConnect.addListener(async function(port) {
+chrome.runtime.onConnect.addListener(async function (port) {
   if (port.name === "popup") {
-    port.onDisconnect.addListener(async function() {
+    port.onDisconnect.addListener(async function () {
       console.log("popup has been closed")
 
       let tab
@@ -20,9 +20,9 @@ chrome.runtime.onConnect.addListener(async function(port) {
       chrome.tabs.query(
         {
           active: true,
-          lastFocusedWindow: true
+          lastFocusedWindow: true,
         },
-        async function(tabs) {
+        async function (tabs) {
           tab = tabs[0]
           // Do something with tab
 
@@ -34,20 +34,20 @@ chrome.runtime.onConnect.addListener(async function(port) {
           // Set the action badge to the next state
           await chrome.action.setBadgeText({
             tabId: tab.id,
-            text: nextState
+            text: nextState,
           })
 
           if (nextState === "ON") {
             // Insert the CSS file when the user turns the extension on
             await chrome.scripting.insertCSS({
               files: ["styles/focus-mode.css"],
-              target: { tabId: tab.id }
+              target: { tabId: tab.id },
             })
           } else if (nextState === "OFF") {
             // Remove the CSS file when the user turns the extension off
             await chrome.scripting.removeCSS({
               files: ["styles/focus-mode.css"],
-              target: { tabId: tab.id }
+              target: { tabId: tab.id },
             })
           }
         }
@@ -59,7 +59,7 @@ chrome.runtime.onConnect.addListener(async function(port) {
 const extensions = "https://developer.chrome.com/docs/extensions"
 const webstore = "https://developer.chrome.com/docs/webstore"
 
-chrome.action.onClicked.addListener(async tab => {
+chrome.action.onClicked.addListener(async (tab) => {
   if (tab.url!.startsWith(extensions) || tab.url!.startsWith(webstore)) {
     console.log("boop")
     // Retrieve the action badge to check if the extension is 'ON' or 'OFF'
@@ -70,26 +70,26 @@ chrome.action.onClicked.addListener(async tab => {
     // Set the action badge to the next state
     await chrome.action.setBadgeText({
       tabId: tab.id,
-      text: nextState
+      text: nextState,
     })
 
     if (nextState === "ON") {
       // Insert the CSS file when the user turns the extension on
       chrome.scripting.insertCSS({
         files: ["../styles/focus-mode.css"],
-        target: { tabId: tab.id! }
+        target: { tabId: tab.id! },
       })
     } else if (nextState === "OFF") {
       // Remove the CSS file when the user turns the extension off
       await chrome.scripting.removeCSS({
         files: ["../styles/focus-mode.css"],
-        target: { tabId: tab.id! }
+        target: { tabId: tab.id! },
       })
     }
   }
 })
 
-chrome.runtime.onMessage.addListener(async function(
+chrome.runtime.onMessage.addListener(async function (
   message,
   sender,
   sendResponse
@@ -98,9 +98,9 @@ chrome.runtime.onMessage.addListener(async function(
     chrome.tabs.query(
       {
         active: true,
-        lastFocusedWindow: true
+        lastFocusedWindow: true,
       },
-      async function(tabs) {
+      async function (tabs) {
         var tab = tabs[0]
         if (tab.url!.startsWith(extensions) || tab.url!.startsWith(webstore)) {
           console.log("boop")
@@ -112,20 +112,20 @@ chrome.runtime.onMessage.addListener(async function(
           // Set the action badge to the next state
           await chrome.action.setBadgeText({
             tabId: tab.id,
-            text: nextState
+            text: nextState,
           })
 
           if (nextState === "ON") {
             // Insert the CSS file when the user turns the extension on
             await chrome.scripting.insertCSS({
               files: ["styles/focus-mode.css"],
-              target: { tabId: tab.id! }
+              target: { tabId: tab.id! },
             })
           } else if (nextState === "OFF") {
             // Remove the CSS file when the user turns the extension off
             await chrome.scripting.removeCSS({
               files: ["styles/focus-mode.css"],
-              target: { tabId: tab.id! }
+              target: { tabId: tab.id! },
             })
           }
         }
